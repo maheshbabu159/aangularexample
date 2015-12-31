@@ -14,6 +14,16 @@ scotchApp.config(function ($routeProvider) {
                 controller: 'mainController'
             })
 
+            // route for the footer page
+            .when('/header', {
+                templateUrl: 'pages/users/login.html',
+                controller: 'mainController'
+            })
+             // route for the login page
+            .when('/header', {
+                templateUrl: 'pages/common/header.html',
+                controller: 'mainController'
+            })
             // route for the about page
             .when('/about', {
                 templateUrl: 'pages/about.html',
@@ -31,14 +41,9 @@ scotchApp.config(function ($routeProvider) {
                 templateUrl: 'pages/users/login.html',
                 controller: 'mainController'
             })
-             // route for the footer page
-            .when('/header', {
-                templateUrl: 'pages/users/login.html',
-                controller: 'mainController'
-            })
-             // route for the login page
-            .when('/header', {
-                templateUrl: 'pages/common/header.html',
+               // route for the login page
+            .when('/dashboard-home', {
+                templateUrl: 'pages/dashboard/index.html',
                 controller: 'mainController'
             });
          
@@ -128,7 +133,7 @@ scotchApp.controller("mainController", function($scope, $http, constants) {
 
             $scope.dataLoading = false;
 
-            window.location.href = "index.html";
+            window.location.href = "#dashboard-home";
 
         }).error(function(status) {
 
