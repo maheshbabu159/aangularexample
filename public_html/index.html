@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html ng-app="scotchApp">
+
+    <head>
+        <!-- SCROLLS -->
+        <title>Example</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+        <!-- Bootstrap Core CSS -->
+        <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- MetisMenu CSS -->
+        <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+        <!-- Timeline CSS -->
+        <link href="dist/css/timeline.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+
+        <!-- Morris Charts CSS -->
+        <link href="bower_components/morrisjs/morris.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- SPELLS -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+        <script src="javascript/script.js"></script>
+    </head>
+
+    <!-- define angular controller -->
+    <body ng-controller="mainController">
+        <!-- HEADER AND NAVBAR -->
+        <header>
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/">Angular Routing Example</a>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                        <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+                        <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+                        <li><a href="#login"><i class="fa fa-sign-in"></i> Login</a></li>
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div id="main">
+            <!-- angular templating -->
+            <!-- this is where content will be injected -->
+            <div ng-view></div>
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- jQuery -->
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+        <!-- Morris Charts JavaScript -->
+        <script src="bower_components/raphael/raphael-min.js"></script>
+        <script src="bower_components/morrisjs/morris.min.js"></script>
+        <script src="js/morris-data.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="dist/js/sb-admin-2.js"></script>
+
+    </body>
+
+</html>
