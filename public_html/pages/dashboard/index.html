@@ -1,18 +1,17 @@
-<div id="wrapper">
+<div id="wrapper"  ng-init="getMoviesByIndustry()">
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div ng-include="'pages/common/sidebar.html'"></div>
     </nav>
     <div id="page-wrapper">
         <div class="row">
+            <div>{{$scope.moviesList}}</div>
             <div class="col-lg-12">
                 <h2 class="page-header movie-header" 
                     style="padding-top: 6px;padding-bottom: 2px;margin: 0px 0 20px;">MoviesReviews</h2>
             </div>
         </div>
         <!-- /.row -->
-        <!-- Start of movie types -->
-        <div ng-include="'../views/shared/movies_types.html'"></div>
         <!-- End of movie types -->
         <div class="row">
             <div class="panel panel-default">

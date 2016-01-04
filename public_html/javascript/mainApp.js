@@ -28,21 +28,8 @@ mainApp.constant('constants', {
         getAllRoles:'getAllRoles',
         loginCheck:'loginCheck',
         addOrEditUser:'addOrEditUser',
-        getAllInstitutes:'getAllInstitutes',
-        addOrEditInstituteDetails:'addOrEditInstituteDetails',
-        InstituteDetail:'InstituteDetail',
-        addOrEditBranch:'addOrEditBranch',
-        getAllBranches:'getAllBranches',
-        getAllCities:'getAllCities',
-        getAllCourses:'getAllCourses',
-        getAllCourseCategories:'getAllCourseCategories',
-        addOrEditCourseCategory:'addOrEditCourseCategory',
-        getAllStates:'getAllStates',
-        addOrEditCity:'addOrEditCity',
-        getAllTrainerDetails:'getAllTrainerDetails',
-        getAllInstituteDetails :'getAllInstituteDetails',
-        addOrEditTrainerDetails:'addOrEditTrainerDetails',
-        addComment:'addComment'
+        addComment:'addComment',
+        getMoviesByIndustry:'getMoviesByIndustry'
 
     },
     ClassNames: {
@@ -93,7 +80,7 @@ mainApp.controller("appController", function($scope, $http, constants) {
     $scope.states=[];
     $scope.instituteDetails=[];
     $scope.message = "Good Start";
-    
+    $scope.moviesList = [];
 
     $scope.formLoginCheck = function() {
         
@@ -122,7 +109,32 @@ mainApp.controller("appController", function($scope, $http, constants) {
             $scope.errorMsg = status;
         });
     };
+    $scope.getMoviesByIndustry = function() {
+        
+        $scope.dataLoading = true;
+        $http({
+            method: constants.requestMethodType,
+            url: constants.serviceURL,
+            headers: constants.requestHeaders,
+            data: {
+                "method": constants.methodNames.getMoviesByIndustry,
+                "industry": 'Tollywood'
+            }
 
+        }).success(function(data) {
+
+            $scope.dataLoading = false;
+            $scope.moviesList = data['result'];
+            alert($scope.moviesList);
+
+
+        }).error(function(status) {
+
+            $scope.dataLoading = false;
+
+            $scope.errorMsg = status;
+        });
+    };
     $scope.addComment = function() {
         
         $scope.dataLoading = true;

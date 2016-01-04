@@ -60,8 +60,8 @@ scotchApp.constant('constants', {
 
     requestHeaders:
             {
-                'X-Parse-Application-Id': 'I8pLOBgiTj7RgNDAKjBtPEFK7tkPVUyTUHX81ynL',
-                'X-Parse-REST-API-Key': 'puje6S1ykPiQZoZ1aSB53wrL4zMUK0uDjwlOTf4z',
+                'X-Parse-Application-Id': '3iSUed31jR3LPJwMSBy9rKZDCwo5nYz5i56QMy7s',
+                'X-Parse-REST-API-Key': 'PF90VEIV03MedSVp3SVz2Q75QO0SsUZWW2RC09WS',
                 'Content-Type': 'application/json'
             },
     methodNames: {
@@ -83,7 +83,8 @@ scotchApp.constant('constants', {
         getAllTrainerDetails:'getAllTrainerDetails',
         getAllInstituteDetails :'getAllInstituteDetails',
         addOrEditTrainerDetails:'addOrEditTrainerDetails',
-        addComment:'addComment'
+        addComment:'addComment',
+        getMoviesByIndustry:'getMoviesByIndustry'
 
     },
     ClassNames: {
@@ -113,7 +114,7 @@ scotchApp.controller("mainController", function($scope, $http, constants) {
     $scope.states=[];
     $scope.instituteDetails=[];
     $scope.message = "Good Start";
-    
+    $scope.moviesList = [];
 
     $scope.formLoginCheck = function() {
         
@@ -142,7 +143,31 @@ scotchApp.controller("mainController", function($scope, $http, constants) {
             $scope.errorMsg = status;
         });
     };
+    $scope.getMoviesByIndustry = function() {
+        
+        $scope.dataLoading = true;
+        $http({
+            method: constants.requestMethodType,
+            url: constants.serviceURL,
+            headers: constants.requestHeaders,
+            data: {
+                "method": constants.methodNames.getMoviesByIndustry,
+                "industry": 'Tollywood'
+            }
 
+        }).success(function(data) {
+
+            $scope.dataLoading = false;
+            $scope.moviesList = data['result'];
+
+        }).error(function(status) {
+
+            $scope.dataLoading = false;
+            $scope.errorMsg = status;
+
+        });
+    };
+  
     $scope.addComment = function() {
         
         $scope.dataLoading = true;
