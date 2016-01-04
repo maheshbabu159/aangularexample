@@ -19,7 +19,7 @@ scotchApp.config(function ($routeProvider) {
                 templateUrl: 'pages/users/login.html',
                 controller: 'mainController'
             })
-             // route for the login page
+            // route for the login page
             .when('/header', {
                 templateUrl: 'pages/common/header.html',
                 controller: 'mainController'
@@ -35,15 +35,21 @@ scotchApp.config(function ($routeProvider) {
                 templateUrl: 'pages/contact.html',
                 controller: 'contactController'
             })
-            
+
             // route for the login page
             .when('/login', {
                 templateUrl: 'pages/users/login.html',
                 controller: 'mainController'
             })
-               // route for the login page
+            // route for the login page
             .when('/dashboard-home', {
                 templateUrl: 'pages/dashboard/index.html',
+                controller: 'mainController'
+            })
+
+            // route for the login page
+            .when('/movieDetails/:movieId', {
+                templateUrl: 'pages/dashboard/details.html',
                 controller: 'mainController'
             });
          
@@ -102,7 +108,7 @@ scotchApp.constant('constants', {
     }
 });
 
-scotchApp.controller("mainController", function($scope, $http, constants) {
+scotchApp.controller("mainController", function($rootScope, $scope, $http, constants, $routeParams, $route) {
 
     //Controller variables
     $scope.users = [];
@@ -115,7 +121,11 @@ scotchApp.controller("mainController", function($scope, $http, constants) {
     $scope.instituteDetails=[];
     $scope.message = "Good Start";
     $scope.moviesList = [];
-
+    $scope.movieId = "10000";
+    
+    $rootScope.$on('$routeChangeSuccess', function () {
+        $scope.receivedId =  $routeParams.movieId;
+    });
     $scope.formLoginCheck = function() {
         
         $scope.dataLoading = true;
@@ -133,13 +143,11 @@ scotchApp.controller("mainController", function($scope, $http, constants) {
         }).success(function(data) {
 
             $scope.dataLoading = false;
-
             window.location.href = "#dashboard-home";
 
         }).error(function(status) {
 
             $scope.dataLoading = false;
-
             $scope.errorMsg = status;
         });
     };
@@ -167,7 +175,10 @@ scotchApp.controller("mainController", function($scope, $http, constants) {
 
         });
     };
-  
+    $scope.loadDetailsView = function() {
+               
+        window.location.href = "#movieDetails/"+$scope.movieId;
+    };
     $scope.addComment = function() {
         
         $scope.dataLoading = true;
