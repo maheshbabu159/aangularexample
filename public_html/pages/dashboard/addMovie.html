@@ -1,4 +1,4 @@
-<div id="wrapper" >
+<div id="wrapper" ng-init="getAllMinutes()">
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div ng-include="'pages/common/sidebar.html'"></div>
@@ -20,22 +20,33 @@
                             <h3 class="panel-title">Please Register</h3>
                         </div>
                         <div class="panel-body">
-                            <form role="form" ng-submit="addOrEditInstitute()" >
+                            <form role="form" ng-submit="addOrEditMovieDetails(false,'')" >
                                 <fieldset>
                                     <div class="form-group">
-                                        <input class="form-control" id="inputMovieName" placeholder="name" name="name" type="text" ng-model="movieName" required autofocus >
+                                        <input class="form-control" id="inputMovieName" placeholder="Movie Name" name="name" type="text" ng-model="movieName" required autofocus >
                                     </div>
                                     <div class="form-group" >
                                         <select class="form-control"  name="MovieIndustry" ng-model="movieIndustry" >
-                                            <option value="">Please select Industry</option> <!-- not selected / blank option -->
+                                            <option value="">Please select industry</option> <!-- not selected / blank option -->
                                             <option value="Tollywood">Tollywood</option>
                                             <option value="Bollywood">Bollywood</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" id="movieReleaseDate" placeholder="yyyy-MM-dd" name="name" type="date" min="2013-01-01" max="20117-12-31" ng-model="movieReleaseDate" required>
+                                        <input class="form-control" id="movieReleaseDate" placeholder="yyyy-MM-dd" name="name" type="date" min="2016-01-01" max="2017-12-31" ng-model="movieReleaseDate" required>
                                     </div>
-
+                                    <div class="form-group">
+                                        <input class="form-control" id="inputMovieDescription" placeholder="Description" name="Desciption" type="text" ng-model="movieDescription" required >
+                                    </div>
+                                     <div class="form-group">
+                                        <input class="form-control" id="inputMovieDescription" placeholder="Cast" name="Cast" type="text" ng-model="movieCast" required >
+                                    </div>
+                                    <div class="form-group" >
+                                        <select class="form-control"  name="MovieIndustry" ng-model="movieLenght" >
+                                            <option value="">Please select movie length</option> <!-- not selected / blank option -->
+                                            <option ng-repeat="minute in minutesArray" value="{{minute}}">{{minute}}</option>
+                                        </select>
+                                    </div>
                                     <div class="alert alert-danger" role="alert" ng-show="errorMsg">{{errorMsg}}</div>
 
                                     <!-- Change this to a button or input when using this as a form -->

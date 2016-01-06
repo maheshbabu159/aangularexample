@@ -109,11 +109,18 @@ scotchApp.controller("mainController", function ($rootScope, $scope, $http, cons
     $scope.message = "Good Start";
     $scope.moviesList = [];
     $scope.movieId = "10000";
+    $scope.minutesArray = [];
 
+    
     $rootScope.$on('$routeChangeSuccess', function () {
         $scope.receivedId = $routeParams.movieId;
     });
-
+    $scope.getAllMinutes = function(){
+      
+        for (var i = 1; i <= 30; i++) {
+            $scope.minutesArray.push(i * 10);
+        }
+    };
 
     $scope.formLoginCheck = function () {
 
@@ -180,8 +187,8 @@ scotchApp.controller("mainController", function ($rootScope, $scope, $http, cons
                 "isEdit": isEdit,
                 "industry": $scope.movieIndustry,
                 "releaseDate": $scope.movieReleaseDate,
-                "castParam": $scope.movieCastParam,
-                "movieLenght": $scope.movieLenght,
+                "castParam": $scope.movieCast,
+                "movieLenght": parseInt($scope.movieLenght),
                 "description": $scope.movieDescription
             }
 
