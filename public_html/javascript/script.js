@@ -53,7 +53,7 @@ scotchApp.config(function ($routeProvider) {
             })
             // route for the login page
             .when('/movieDetails/:movieId', {
-                templateUrl: 'pages/dashboard/details.html',
+                templateUrl: 'pages/dashboard/movieDetails.html',
                 controller: 'mainController'
             });
 
@@ -79,7 +79,9 @@ scotchApp.constant('constants', {
         loginCheck: 'loginCheck',
         addOrEditUser: 'addOrEditUser',
         getMoviesByIndustry: 'getMoviesByIndustry',
-        addOrEditMovieDetails: 'addOrEditMovieDetails'
+        addOrEditMovieDetails: 'addOrEditMovieDetails',
+        getMovieDetailsByObjectId: 'getMovieDetailsByObjectId'
+
     },
     ClassNames: {
         InstituteDetail: 'InstituteDetail',
@@ -108,13 +110,8 @@ scotchApp.controller("mainController", function ($rootScope, $scope, $http, cons
     $scope.instituteDetails = [];
     $scope.message = "Good Start";
     $scope.moviesList = [];
-    $scope.movieId = "10000";
     $scope.minutesArray = [];
 
-    
-    $rootScope.$on('$routeChangeSuccess', function () {
-        $scope.receivedId = $routeParams.movieId;
-    });
     $scope.getAllMinutes = function(){
       
         for (var i = 1; i <= 30; i++) {
@@ -175,7 +172,12 @@ scotchApp.controller("mainController", function ($rootScope, $scope, $http, cons
     $scope.addOrEditMovieDetails = function (isEdit, movieId) {
 
         $scope.dataLoading = true;
+       
+        /*var file = $scope.myFile;
 
+        console.log('file is ');
+        console.dir(file);*/
+     
         $http({
             method: constants.requestMethodType,
             url: constants.serviceURL,
@@ -187,7 +189,7 @@ scotchApp.controller("mainController", function ($rootScope, $scope, $http, cons
                 "isEdit": isEdit,
                 "industry": $scope.movieIndustry,
                 "releaseDate": $scope.movieReleaseDate,
-                "castParam": $scope.movieCast,
+                "cast": $scope.movieCast,
                 "movieLenght": parseInt($scope.movieLenght),
                 "description": $scope.movieDescription
             }
@@ -203,11 +205,44 @@ scotchApp.controller("mainController", function ($rootScope, $scope, $http, cons
             $scope.errorMsg = status;
         });
     };
+    $scope.getMovieDetailsByObjectId = function (movieId) {
 
-    $scope.loadDetailsView = function () {
+       $scope.dataLoading = true;
+       
+       alert("ada");
+     
+        $http({
+            method: constants.requestMethodType,
+            url: constants.serviceURL,
+            headers: constants.requestHeaders,
+            data: {
+                "method": constants.methodNames.getMovieDetailsByObjectId,
+                "movieId": movieId
+            }
 
-        window.location.href = "#movieDetails/" + $scope.movieId;
+        }).success(function (data) {
+
+            console.log(data);
+            $scope.dataLoading = false;
+            $scope.movieDetails = data['result'];
+
+        }).error(function (status) {
+
+            $scope.dataLoading = false;
+            $scope.errorMsg = status;
+        });
     };
+    $scope.loadDetailsView = function (movieId) {
+        
+        console.log("in on loadDetailsView");
+        window.location.href = "#movieDetails/" + movieId;
+    };
+     $rootScope.$on('$routeChangeSuccess', function () {
+        
+        console.log("in on change");
+        $scope.movieId = $routeParams.movieId;
+    });
+    
     $scope.addComment = function () {
 
         $scope.dataLoading = true;

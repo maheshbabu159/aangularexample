@@ -6,7 +6,7 @@
     <div id="page-wrapper">
         <div class="row" align="center">
             <div class="col-lg-12">
-                <h1 class="page-header">Movies</h1>
+                <h1 class="page-header">Objects</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -38,15 +38,16 @@
                                         <td>{{movie.industry}}</td>
 
                                         <td>
-                                            <button class="btn btn-primary" ui-sref="root.edit_movie({id: '9887TY'})">
+                                            <button class="btn btn-primary" ng-click= "loadDetailsView(movie.objectId)">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-primary" >
                                                 <i class="fa fa-pencil-square-o"></i>
                                             </button>
                                             <button class="btn btn-danger">
                                                 <i class="fa fa-trash-o"></i>
                                             </button>
-                                            <button class="btn btn-primary" ui-sref="root.view_movie({name: 'fooVal1'})">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
+                                            
                                         </td>
                                     </tr>
                                 </tbody>
