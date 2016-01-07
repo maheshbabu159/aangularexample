@@ -41,10 +41,10 @@
                                             <button class="btn btn-primary" ng-click= "loadDetailsView(movie.objectId)">
                                                 <i class="fa fa-eye"></i>
                                             </button>
-                                            <button class="btn btn-primary" >
+                                            <button class="btn btn-primary"  >
                                                 <i class="fa fa-pencil-square-o"></i>
                                             </button>
-                                            <button class="btn btn-danger">
+                                            <button class="btn btn-danger" onClick="return confirm('Are you absolutely sure you want to delete?')" ng-click="deleteMovieByObjectId(movie.objectId)">
                                                 <i class="fa fa-trash-o"></i>
                                             </button>
                                             

@@ -80,8 +80,8 @@ scotchApp.constant('constants', {
         addOrEditUser: 'addOrEditUser',
         getMoviesByIndustry: 'getMoviesByIndustry',
         addOrEditMovieDetails: 'addOrEditMovieDetails',
-        getMovieDetailsByObjectId: 'getMovieDetailsByObjectId'
-
+        getMovieDetailsByObjectId: 'getMovieDetailsByObjectId',
+        deleteMovieByObjectId: 'deleteMovieByObjectId'
     },
     ClassNames: {
         InstituteDetail: 'InstituteDetail',
@@ -225,6 +225,31 @@ scotchApp.controller("mainController", function ($rootScope, $scope, $http, cons
             console.log(data);
             $scope.dataLoading = false;
             $scope.movieDetails = data['result'];
+
+        }).error(function (status) {
+
+            $scope.dataLoading = false;
+            $scope.errorMsg = status;
+        });
+    };
+    $scope.deleteMovieByObjectId = function (movieId) {
+
+       $scope.dataLoading = true;
+           
+        $http({
+            method: constants.requestMethodType,
+            url: constants.serviceURL,
+            headers: constants.requestHeaders,
+            data: {
+                "method": constants.methodNames.deleteMovieByObjectId,
+                "movieId": movieId
+            }
+
+        }).success(function (data) {
+
+            console.log(data);
+            $scope.dataLoading = false;
+            window.location.href = "#dashboard-home";
 
         }).error(function (status) {
 
